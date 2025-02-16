@@ -20,6 +20,7 @@ app.use(express.json());
 app.use('/api', require('./Routes/CreateUser'))
 app.use('/api', require('./Routes/DisplayData'))///this middleware helps by giving ,POST=localhost:8000/api/createuser, sows that 
 // connection is true
+app.use('/api', require('./Routes/OrderData'))
 /////
 connectDB();
 
@@ -37,6 +38,16 @@ app.get('/', (req, res) => {
 //     res.status(500).json({ error: error.message });
 //   }
 // })
+
+
+// const fetched_data=await mongoose.connection.db.collection("food_items");
+// fetched_data.find({}).toArray(function(err,data){
+//   if(err) console.log(err);
+//   else{
+//     global.food_items =data;
+//     console.log(global.food_items);
+//   }
+// });
 
 
 app.listen(port, () => {

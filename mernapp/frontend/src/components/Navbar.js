@@ -1,7 +1,21 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import Badge from 'react-bootstrap/Badge';
+import Modal from '../Modal';
+import Cart from '../screens/cart';
+import { useCart } from './contextReducer';
+
 
 export default function Navbar() {
+const [cartView, setCartView] = useState(false)
+
+let data = useCart();
+  const navigate= useNavigate();
+  const handleLogout =()=>{
+    localStorage.removeItem("authToken");
+    navigate("/login")
+  }
+
   return (
     <div>
 
@@ -12,18 +26,34 @@ export default function Navbar() {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
+      <ul className="navbar-nav me-auto mb-2">
         <li className="nav-item">
-          <Link className="nav-link " aria-current="page" to="/">Home</Link>
+          <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/login">Loggin</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/createuser">SignUp</Link>
-        </li>
+        {(localStorage.getItem('authToken'))
+        ?<li className="nav-item"> <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">My order</Link> </li>
+        :""}
         
       </ul>
+
+      {(!localStorage.getItem('authToken'))?
+      <div className='d-flex'>
+          <Link className="btn bg-white text-success mx-1" to="/login">Loggin</Link>
+          <Link className="btn bg-white text-success mx-1" to="/createuser">SignUp</Link>
+      </div>
+      :<div>
+        <div className='btn bg-white text-success mx-2' onClick={() => {setCartView(true)}}>
+        My Cart {" "}
+        <Badge pill bg='danger'>{data.length}</Badge>
+        </div>
+
+{cartView ? <Modal onClose={() =>setCartView(false)}><Cart></Cart></Modal> :null}
+
+      <div className='btn bg-white text-danger mx-2' onClick={handleLogout}>
+        Logout
+        </div>
+        </div>
+         }
     </div>
   </div>
 </nav>

@@ -13,13 +13,13 @@ export default function Carousel() {
 </div>
 
     <div className="carousel-item active">
-      <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-169994-674010.jpg&fm=jpg" className="d-block w-100" alt="..."/>
+      <img src="https://thumbs.dreamstime.com/b/pizza-hum-cheese-tomato-pepper-slice-34972007.jpg" className="d-block w-100" alt="..."/>
     </div>
     <div className="carousel-item">
-      <img src="https://img.lovepik.com/photo/48015/7094.jpg_wh860.jpg" className="d-block w-100" alt="..."/>
+      <img src="https://img.lovepik.com/photo/48015/7094.jpg_wh860.jpg" className="d-block w-100 h-50" alt="..."/>
     </div>
     <div className="carousel-item">
-      <img src="https://source.unsplash.com/random/900×700/?fruit" className="d-block w-100" alt="..."/>
+      <img src="https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg" alt="crypto" className="d-block w-100" />
     </div>
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
